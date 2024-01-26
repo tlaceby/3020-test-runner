@@ -1,11 +1,4 @@
 
-const dir = Deno.args[0];
-
-if (!dir) {
-    console.error("Invalid cli usage. Must supply a path to place the generated md file.")
-}
-
-console.log(dir);
 let md = `# 3020 Excersises List 
 Generated On: ${new Date().toDateString()} ${new Date().toTimeString().split(" ")[0]}
 Completed $COMPLETED of $TOTAL excersises.\n\n`;
@@ -38,4 +31,4 @@ for await (const dirEntry of Deno.readDir('./')) {
 
 md = md.replaceAll("$COMPLETED", totalCompleted.toString());
 md = md.replaceAll("$TOTAL", count.toString());
-Deno.writeTextFileSync(dir + "completed.md", md);
+Deno.writeTextFileSync("completed.md", md);
